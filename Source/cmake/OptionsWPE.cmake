@@ -66,7 +66,7 @@ WEBKIT_OPTION_DEFAULT_PORT_VALUE(ENABLE_WEB_RTC PRIVATE ${ENABLE_EXPERIMENTAL_FE
 WEBKIT_OPTION_DEFINE(ENABLE_GTKDOC "Whether or not to use generate gtkdoc." PUBLIC OFF)
 WEBKIT_OPTION_DEFINE(USE_OPENJPEG "Whether to enable support for JPEG2000 images." PUBLIC ON)
 WEBKIT_OPTION_DEFINE(USE_WOFF2 "Whether to enable support for WOFF2 Web Fonts." PUBLIC ON)
-WEBKIT_OPTION_DEFINE(ENABLE_WPE_QT_API "Whether to enable support for the Qt5/QML plugin" PUBLIC OFF)
+WEBKIT_OPTION_DEFINE(ENABLE_WPE_QT_API "Whether to enable support for the Qt6/QML plugin" PUBLIC OFF)
 
 # Private options specific to the WPE port.
 WEBKIT_OPTION_DEFINE(USE_OPENVR "Whether to use OpenVR as WebVR backend." PRIVATE OFF)
@@ -161,8 +161,8 @@ if (ENABLE_XSLT)
 endif ()
 
 if (ENABLE_WPE_QT_API)
-    find_package(Qt5 REQUIRED COMPONENTS Core Quick Gui)
-    find_package(Qt5Test REQUIRED)
+    find_package(Qt6 REQUIRED COMPONENTS Core Quick Gui)
+    find_package(Qt6Test REQUIRED)
     find_package(PkgConfig)
     find_package(WPEBackend-fdo 1.3.0 REQUIRED)
 endif ()

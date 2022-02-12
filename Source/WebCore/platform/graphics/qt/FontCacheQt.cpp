@@ -88,7 +88,7 @@ bool FontCache::isSystemFontForbiddenForEditing(const String&)
 
 Ref<Font> FontCache::lastResortFallbackFont(const FontDescription& fontDescription)
 {
-    const AtomString fallbackFamily = String(QFont(/*fontDescription.firstFamily()*/).lastResortFamily()); // FIXME
+    const AtomString fallbackFamily = String("helvetica");
     FontPlatformData platformData(fontDescription, fallbackFamily);
     return fontForPlatformData(platformData);
 }

@@ -165,12 +165,12 @@ endmacro()
 
 if (PORT STREQUAL "WPE" AND ENABLE_WPE_QT_API)
     set(WPEQtAPITests_INCLUDE_DIRECTORIES
-        ${Qt5_INCLUDE_DIRS}
-        ${Qt5Test_INCLUDE_DIRS}
+        ${Qt6_INCLUDE_DIRS}
+        ${Qt6Test_INCLUDE_DIRS}
     )
     set(WPEQtAPITest_LIBRARIES
          ${WebKitAPITest_LIBRARIES}
-         Qt5::Test qtwpe
+         Qt6::Test qtwpe
     )
     ADD_WPE_QT_TEST(TestLoad ${TOOLS_DIR}/TestWebKitAPI/Tests/WPEQt/TestLoad.cpp)
     ADD_WPE_QT_TEST(TestLoadHtml ${TOOLS_DIR}/TestWebKitAPI/Tests/WPEQt/TestLoadHtml.cpp)

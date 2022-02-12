@@ -28,8 +28,25 @@
 #include <QNetworkAccessManager>
 #include <QNetworkCookie>
 #include <QNetworkCookieJar>
+#include <private/qtldurl_p.h>
 
 namespace WebCore {
+  
+static QString qTopLevelDomain(const QString &domain)
+{
+    const QString domainLower = domain.toLower();
+    QVector<QString> sections = domainLower.split(QLatin1Char('.'), Qt::SkipEmptyParts);
+    if (sections.isEmpty())
+        return QString();
+
+    QString level, tld;
+    for (int j = sections.count() - 1; j >= 0; --j) {
+        level.prepend(QLatin1Char('.') + sections.at(j));
+        if (qIsEffectiveTLD(level.right(level.size() - 1)))
+            tld = level;
+    }
+    return tld;
+}
 
 inline void removeTopLevelDomain(QString* domain, const QString& topLevelDomain)
 {
@@ -39,8 +56,8 @@ inline void removeTopLevelDomain(QString* domain, const QString& topLevelDomain)
 
 static bool urlsShareSameDomain(const QUrl& url, const QUrl& firstPartyUrl)
 {
-    QString firstPartyTLD = firstPartyUrl.topLevelDomain();
-    QString requestTLD = url.topLevelDomain();
+    QString firstPartyTLD = qTopLevelDomain(firstPartyUrl.host());
+    QString requestTLD = qTopLevelDomain(url.host());
 
     if (firstPartyTLD != requestTLD)
         return false;

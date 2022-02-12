@@ -368,15 +368,15 @@ if (ENABLE_WPE_QT_API)
     )
 
     set(qtwpe_LIBRARIES
-        Qt5::Core Qt5::Quick
+        Qt6::Core Qt6::Quick
         WebKit
         ${LIBEPOXY_LIBRARIES}
         ${WPEBACKEND_FDO_LIBRARIES}
     )
 
     set(qtwpe_INCLUDE_DIRECTORIES
-        ${Qt5_INCLUDE_DIRS}
-        ${Qt5Gui_PRIVATE_INCLUDE_DIRS}
+        ${Qt6_INCLUDE_DIRS}
+        ${Qt6Gui_PRIVATE_INCLUDE_DIRS}
         ${LIBEPOXY_INCLUDE_DIRS}
         ${WPEBACKEND_FDO_INCLUDE_DIRS}
     )

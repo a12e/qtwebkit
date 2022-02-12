@@ -273,7 +273,7 @@ void QWebFrameAdapter::setHtml(const QString &html, const QUrl &baseUrl)
 QMultiMap<QString, QString> QWebFrameAdapter::metaData() const
 {
     if (!frame->document())
-        return QMap<QString, QString>();
+        return {};
 
     QMultiMap<QString, QString> map;
     Document* doc = frame->document();
@@ -490,7 +490,7 @@ void QWebFrameAdapter::renderRelativeCoords(QPainter* painter, int layers, const
     if (!frame->view() || !frame->contentRenderer())
         return;
 
-    QVector<QRect> vector = clip.rects();
+    QVector<QRect> vector{clip.cbegin(), clip.cend()};
     if (vector.isEmpty())
         return;
 
@@ -541,7 +541,7 @@ void QWebFrameAdapter::renderFrameExtras(GraphicsContext& context, int layers, c
         return;
     QPainter* painter = context.platformContext();
     WebCore::FrameView* view = frame->view();
-    QVector<QRect> vector = clip.rects();
+    QVector<QRect> vector{clip.cbegin(), clip.cend()};
     for (int i = 0; i < vector.size(); ++i) {
         const QRect& clipRect = vector.at(i);
 
